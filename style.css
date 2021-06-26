@@ -14,6 +14,7 @@ body{
     overflow:hidden;
     height: 100vh;
     font-family: 'Kirang Haerang', cursive;
+    animation: comein 1s 1 ;
 }
 
 .container{
@@ -203,5 +204,26 @@ body{
         justify-content: start;
         align-items: none;
         overflow-x: scroll;
+    }
+}
+h1
+{
+    animation: text 1s 1;
+}
+@keyframes text {
+    0%{margin-bottom: -40px;}
+    30%{letter-spacing: 25px;margin-bottom: -40px;}
+    85%{letter-spacing: 5px;margin-bottom: -40px;}
+    
+}
+@keyframes comein 
+{
+    from{
+        opacity: 0;
+        transform :rotateX(-10deg);
+    }
+    to{
+        opacity: 1;
+        transform :rotateX(0);
     }
 }
