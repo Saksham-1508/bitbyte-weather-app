@@ -5,7 +5,10 @@
     margin:0;
     padding:0;
 }
-
+#navbar-brand
+{
+    font-size: 200%;
+}
 body{
     background:url(weather-back.jpeg);
     backdrop-filter: blur(4px);
@@ -22,6 +25,26 @@ body{
     color:#fff;
 }
 
+::placeholder
+{
+    color: white;
+    opacity: 0.6;
+}
+input:focus, textarea:focus, select:focus
+{
+    outline: none;
+}
+.input
+{
+    background: transparent;
+    border-top: hidden;
+    border-right: hidden;
+    border-left: hidden;
+    border-bottom: 2px solid white;
+    size: 100px;
+    caret-color: white;
+    color: white;
+}
 .current-info{
     display: flex;
     justify-content: space-between;
@@ -211,9 +234,9 @@ h1
     animation: text 1s 1;
 }
 @keyframes text {
-    0%{margin-bottom: -40px;}
-    30%{letter-spacing: 25px;margin-bottom: -40px;}
-    85%{letter-spacing: 5px;margin-bottom: -40px;}
+    0%{}
+    30%{letter-spacing: 25px;}
+    85%{letter-spacing: 5px;}
     
 }
 @keyframes comein 
