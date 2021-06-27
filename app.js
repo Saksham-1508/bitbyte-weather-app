@@ -12,7 +12,25 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 const API_KEY ='49cc8c821cd2aff9af04c9f98c36eb74';
 
+const searchBox = document.querySelector('#input');
 
+searchBox.addEventListener('keypress',setquery);
+
+function setquery(event)
+{
+    if(event.keyCode == 13)
+    {
+        var coord = searchBox.value.split(",")
+        let lt= Number(coord[0]);
+        let lg= Number(coord[1]);
+        console.log(typeof lt);
+        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lt}&lon=${lg}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
+            console.log(data)
+            showWeatherData(data)
+        })
+    }
+
+}
 
 setInterval(() => {
     const time = new Date();
@@ -32,6 +50,7 @@ getWeatherData()
 function getWeatherData () {
     navigator.geolocation.getCurrentPosition((success) => {
         let {latitude, longitude } = success.coords;
+        console.log(success.coords);
         fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&units=metric&appid=${API_KEY}`).then(res => res.json()).then(data => {
         console.log(data)
         showWeatherData(data)
@@ -40,7 +59,7 @@ function getWeatherData () {
 }
 function showWeatherData (data){
     let {humidity, pressure, sunrise, sunset, wind_speed} = data.current;
-
+    console.log(data.current);
     timezone.innerHTML = data.timezone;
     countryEl.innerHTML = data.lat + 'N ' + data.lon+'E'
 
@@ -98,3 +117,4 @@ function showWeatherData (data){
 
     weatherForecastEl.innerHTML = otherDayForcast;
 }
+
